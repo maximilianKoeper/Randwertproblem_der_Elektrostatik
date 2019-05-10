@@ -52,15 +52,20 @@ print("[*] Äußerer Leiter initialisiert\n")
 #Zeigt aktuelles Array mit Außenleiter
 #pt.plotlist(T)
 
+#User Abfrage 
+#Welche Szenario soll berechnet werden
+#A/B/C vgl. Aufgabenblatt
+
 input = input("Welche Anordnung soll berechnet werden (A/B/C): ")
 if input == "A":
     i = 55
     j = 25
     while i < 64:
         while j < 34:
+            T[i][j]=1
             j +=1
+        j = 25
         i += 1
-    print("A")
 elif input == "B":
     print("B")
 elif input == "C":
@@ -69,4 +74,6 @@ else:
     print("ERROR")
     exit(1)
 
-
+#DEBUG
+#Zeigt aktuelles Array mit allen Leitern
+pt.plotlist(T)
