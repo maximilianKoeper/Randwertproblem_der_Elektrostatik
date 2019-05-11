@@ -1,10 +1,9 @@
 import Iterative as it
-from array import *
-import random
-from numpy.random import seed
+import Plot as plt
 from numpy.random import randint
-import matplotlib.pyplot as plt
 import numpy as np
+
+print("Randwertproblem der Elektrostatik\nVersion 1.1\n")
 
 # Initialisiere Array für Box
 # Größe 50x50 
@@ -12,8 +11,8 @@ import numpy as np
 # Werte werden als float per numpy generiert 
 # Zufallswerte sind zwischen 1 und 99
 
-x = np.linspace(-11,41, num=102)
-y = np.linspace(-24,26, num=102)
+x = np.linspace(-10,40, num=102)
+y = np.linspace(-25,25, num=102)
 
 X, Y = np.meshgrid(x,y, sparse=True ,copy=True)
 Z = np.zeros((102,102), dtype=np.float)
@@ -22,9 +21,6 @@ for i in range(102):
    for j in range(102):
        Z[i,j] = float(randint(1, high=99, size=None))
 
-#DEBUG
-#plt.pcolor(X, Y, Z)
-#plt.show()
 
 print("[*] Array initialisiert \n")
 
@@ -48,9 +44,6 @@ while i < 102:
     Z[i][100] = 0
     i += 1
 
-#DEBUG
-#plt.pcolor(X, Y, Z)
-#plt.show()
 print("[*] Äußerer Leiter initialisiert\n")
 
 #User Abfrage 
@@ -70,9 +63,6 @@ while i < 54:
         j +=1
     j = 18
     i += 1
-#DEBUG
-#plt.pcolor(X, Y, Z)
-#plt.show()
 
 #Szenario wird generiert
 #Szenario A muss nicht weiter verändert werden
@@ -112,7 +102,4 @@ print("\nGesamter Fehler (letzter Schritt): " + str(total_error))
 print("\nDurchschnittlicher Fehler (letzter Schritt): " + str(total_error_mean))
 
 #Zeige Ergebnis der Berechnung
-plt.pcolormesh(X, Y, Z)
-plt.show()
-
-
+plt.plot(X, Y, Z)

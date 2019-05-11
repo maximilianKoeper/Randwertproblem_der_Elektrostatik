@@ -28,6 +28,12 @@
     <Compile Include="Iterative\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Plot\module1.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Plot\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Randwertproblem_der_Elektrostatik.py" />
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Iterative\" />
+    <Folder Include="Plot\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />

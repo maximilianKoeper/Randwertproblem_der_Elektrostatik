@@ -46,7 +46,7 @@ def iterativeLaplace(V):
                 o += 1
                 j +=1
             i += 1
-        if total_error < 10:
+        if total_error < 100:
             x = False
         U = V.copy()
 
