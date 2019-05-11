@@ -3,7 +3,7 @@ import Plot as plt
 from numpy.random import randint
 import numpy as np
 
-print("Randwertproblem der Elektrostatik\nVersion 1.3\n")
+print("Randwertproblem der Elektrostatik\nVersion 1.3.1\n")
 
 # Initialisiere Array für Box
 # Größe 50x50 
