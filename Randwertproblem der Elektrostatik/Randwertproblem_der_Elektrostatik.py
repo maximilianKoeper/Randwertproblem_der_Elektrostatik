@@ -3,7 +3,7 @@ import Plot as plt
 from numpy.random import randint
 import numpy as np
 
-print("Randwertproblem der Elektrostatik\nVersion 1.2\n")
+print("Randwertproblem der Elektrostatik\nVersion 1.3\n")
 
 # Initialisiere Array für Box
 # Größe 50x50 
@@ -17,8 +17,8 @@ y = np.linspace(-25,25, num=102)
 X, Y = np.meshgrid(x,y, sparse=True ,copy=True)
 Z = np.zeros((102,102), dtype=np.float)
 
-for i in range(102):
-   for j in range(102):
+for i in range(101):
+   for j in range(101):
        Z[i,j] = float(randint(1, high=99, size=None))
 
 

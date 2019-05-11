@@ -2,14 +2,15 @@ import matplotlib.pyplot as plt
 
 def plot(X, Y, Z, error_entwicklung):
     plt.subplot(2,2,1)
-    plt.title('Randwertproblem der Elektrostatik')
+    plt.suptitle('Randwertproblem der Elektrostatik', fontsize=16)
+    plt.title('Ergebnis')
     plt.pcolormesh(X, Y, Z, shading='flat')
     plt.subplot(2,2,2)
     plt.title('Interpoliert')
     plt.pcolormesh(X, Y, Z, shading='gouraud')
     plt.subplot(2,2,3)
-    plt.title('Potentiallinien (Interpoliert)')
-    plt.pcolormesh(X, Y, Z, cmap='flag', shading='gouraud')
+    plt.title('Äquipotentiallinien')
+    plt.contour(Z, levels=25)
     plt.subplot(2,2,4)
     plt.title('Fehler Entwicklung Gesamt (logarithmisch)')
     plt.plot(error_entwicklung, 'bo')

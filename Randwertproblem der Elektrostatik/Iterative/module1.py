@@ -54,7 +54,7 @@ def iterativeLaplace(V, w):
                 j +=1
             i += 1
         error_entwicklung.append(math.log10(total_error))
-        if total_error < 50:
+        if total_error < 0.1:
             x = False
         U = V.copy()
 
