@@ -12,7 +12,7 @@ from numpy.random import rand
 
 import matplotlib.pyplot as plt
 import numpy as np
-
+seed(1)
 x = np.linspace(-11,41, num=52)
 y = np.linspace(-24,26, num=52)
 
@@ -21,7 +21,7 @@ Z = np.zeros((52,52))
 
 for i in range(52):
    for j in range(52):
-       Z[i,j] = rand()
+       Z[i,j] = rand()*100
 
 #DEBUG
 #plt.pcolor(X, Y, Z)
@@ -65,25 +65,38 @@ i = 23
 j = 9
 while i < 27:
     while j < 13:
-        Z[i][j]=1
+        Z[i][j]=100
         j +=1
     j = 9
     i += 1
 #DEBUG
 #plt.pcolor(X, Y, Z)
 #plt.show()
-
+#Z = Z*100
 #Szenario wird generiert
 if input == "A":
     print("A")
 elif input == "B":
-
-    print("B")
+    i = 5
+    while i < 45:
+        Z[i][25] = 0
+        i += 1
 elif input == "C":
+    i = 23
+    j = 38
+    while i < 27:
+        while j < 42:
+            Z[i][j]=-100
+            j +=1
+        j = 38
+        i += 1
     print("C")
 else:
     print("ERROR")
     exit(1)
 
+#DEBUG
+plt.pcolor(X, Y, Z)
+plt.show()
 
 
