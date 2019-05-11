@@ -1,11 +1,14 @@
 #Iterative Berechnung der Laplacegleichung
 
 #Berechnung wird von beiden Seiten vorgenommen um die Konvergenzgeschwindigkeit zu erhöhen
+#Blöcke mit den Werten 0,100,-100 kV werden nicht überschrieben
 
 def iterativeLaplace(V,d):
     x=0
+    print("\n[ ] Iteration wird durchgeführt")
+
     while x < d/2:
-        i=0
+        i = 0
         while i<50:
             j=0
             while j<50:

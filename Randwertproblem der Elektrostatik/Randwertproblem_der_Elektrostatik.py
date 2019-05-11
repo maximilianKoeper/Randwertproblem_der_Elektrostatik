@@ -1,5 +1,4 @@
 import Iterative as it
-import Plot as pt
 from array import *
 import random
 from numpy.random import seed
@@ -58,9 +57,11 @@ print("[*] Äußerer Leiter initialisiert\n")
 #Welche Szenario soll berechnet werden
 #A/B/C vgl. Aufgabenblatt
 
-input = input("Welche Anordnung soll berechnet werden (A/B/C): ")
+abc = input("Welche Anordnung soll berechnet werden (A/B/C): ")
 
 #Generiert geladene Fläche (4x4)
+#Diese Fläche ist bei allen Szenarios gleich
+
 i = 23
 j = 9
 while i < 27:
@@ -74,14 +75,14 @@ while i < 27:
 #plt.show()
 
 #Szenario wird generiert
-if input == "A":
-    print("A")
-elif input == "B":
+#Szenario A muss nicht weiter verändert werden
+
+if abc == "B":
     i = 5
     while i < 45:
         Z[i][25] = 0
         i += 1
-elif input == "C":
+elif abc == "C":
     i = 23
     j = 38
     while i < 27:
@@ -90,14 +91,16 @@ elif input == "C":
             j +=1
         j = 38
         i += 1
-    print("C")
 else:
-    print("ERROR")
+    print("\nERROR")
     exit(1)
 
+try:
+    input("\n[*] Alle Daten geladen\n\nEnter um Berechnung zu starten")
+except SyntaxError:
+    pass
 Z=it.iterativeLaplace(Z,1000)
-#DEBUG
-plt.pcolor(X, Y, Z)
+plt.pcolormesh(X, Y, Z)
 plt.show()
 
 
