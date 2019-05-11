@@ -93,7 +93,8 @@ except SyntaxError:
     pass
 
 #Führe Iterationen aus
-Z, iteration_count, total_error, total_error_mean, calc_time, error_entwicklung = it.iterativeLaplace(Z)
+#1.6 ist Faktor für Over-relaxation
+Z, iteration_count, total_error, total_error_mean, calc_time, error_entwicklung = it.iterativeLaplace(Z, 1.6)
 
 #Zeige Details zur Berechnung an
 print("\nBenötigte Zeit(in s): " + str(calc_time))
