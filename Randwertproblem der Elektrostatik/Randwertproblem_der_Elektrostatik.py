@@ -3,7 +3,7 @@ import Plot as plt
 from numpy.random import randint
 import numpy as np
 
-print("Randwertproblem der Elektrostatik\nVersion 1.1\n")
+print("Randwertproblem der Elektrostatik\nVersion 1.2\n")
 
 # Initialisiere Array für Box
 # Größe 50x50 
@@ -70,7 +70,7 @@ while i < 54:
 if abc == "B":
     i = 10
     while i < 90:
-        Z[i][50] = 0
+        Z[i][51] = 0
         i += 1
 elif abc == "C":
     i = 46
@@ -93,13 +93,14 @@ except SyntaxError:
     pass
 
 #Führe Iterationen aus
-Z, iteration_count, total_error, total_error_mean, calc_time = it.iterativeLaplace(Z)
+Z, iteration_count, total_error, total_error_mean, calc_time, error_entwicklung = it.iterativeLaplace(Z)
 
 #Zeige Details zur Berechnung an
 print("\nBenötigte Zeit(in s): " + str(calc_time))
 print("\nBenötigte Iterationen: " + str(iteration_count))
 print("\nGesamter Fehler (letzter Schritt): " + str(total_error))
 print("\nDurchschnittlicher Fehler (letzter Schritt): " + str(total_error_mean))
+print("\nPotentialwert an der Stelle x=10 y=0: " + str(Z[51][41]))
 
 #Zeige Ergebnis der Berechnung
-plt.plot(X, Y, Z)
+plt.plot(X, Y, Z, error_entwicklung)

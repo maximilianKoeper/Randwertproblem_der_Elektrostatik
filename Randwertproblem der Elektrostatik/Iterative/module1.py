@@ -5,6 +5,7 @@
 
 import copy
 import time
+import math
 
 def iterativeLaplace(V):
     a = time.perf_counter()
@@ -14,23 +15,25 @@ def iterativeLaplace(V):
     x = True
     iteration_count = 0
     o = 0
+    error_entwicklung = [] 
+
 
     while x == True:
         o = 0
-        iteration_count += 1
+        iteration_count += 2
         i = 1
         total_error = 0
-        while i<100:
+        while i<101:
             j=1
-            while j<100:
+            while j<101:
                 if V[i][j] !=0 and V[i][j] != 100 and V[i][j] !=-100:
                     #Potential für Punkt i,j
                     V[i][j]=float((V[i-1][j]+V[i+1][j]+V[i][j-1]+V[i][j+1])/4)
                 j +=1
             i += 1
-        i=99
+        i=100
         while i>0:
-            j=99
+            j=100
             while j>0:
                 if V[i][j] !=0 and V[i][j] != 100 and V[i][j] !=-100:
                     #Potential für Punkt i,j
@@ -46,7 +49,8 @@ def iterativeLaplace(V):
                 o += 1
                 j +=1
             i += 1
-        if total_error < 100:
+        error_entwicklung.append(math.log10(total_error))
+        if total_error < 0.5:
             x = False
         U = V.copy()
 
@@ -54,4 +58,4 @@ def iterativeLaplace(V):
 
     total_error_mean = float(total_error/o)
     calc_time = time.perf_counter() - a
-    return V, iteration_count, total_error, total_error_mean, calc_time
+    return V, iteration_count, total_error, total_error_mean, calc_time, error_entwicklung
