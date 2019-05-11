@@ -72,7 +72,7 @@ while i < 27:
 #DEBUG
 #plt.pcolor(X, Y, Z)
 #plt.show()
-#Z = Z*100
+
 #Szenario wird generiert
 if input == "A":
     print("A")
@@ -95,6 +95,7 @@ else:
     print("ERROR")
     exit(1)
 
+Z=it.iterativeLaplace(Z,1000)
 #DEBUG
 plt.pcolor(X, Y, Z)
 plt.show()
