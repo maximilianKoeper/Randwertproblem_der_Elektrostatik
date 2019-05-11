@@ -109,7 +109,7 @@ Z, iteration_count, total_error, total_error_mean, calc_time = it.iterativeLapla
 print("\nBenötigte Zeit(in s): " + str(calc_time))
 print("\nBenötigte Iterationen: " + str(iteration_count))
 print("\nGesamter Fehler (letzter Schritt): " + str(total_error))
-print("\nDurchsnittlicher Fehler (letzter Schritt): " + str(total_error_mean))
+print("\nDurchschnittlicher Fehler (letzter Schritt): " + str(total_error_mean))
 
 #Zeige Ergebnis der Berechnung
 plt.pcolormesh(X, Y, Z)
