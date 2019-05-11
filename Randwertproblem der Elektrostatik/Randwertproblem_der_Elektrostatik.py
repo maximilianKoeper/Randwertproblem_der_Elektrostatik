@@ -3,7 +3,8 @@ from array import *
 import random
 from numpy.random import seed
 from numpy.random import randint
-import time
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Initialisiere Array für Box
 # Größe 50x50 
@@ -11,17 +12,14 @@ import time
 # Werte werden als float per numpy generiert 
 # Zufallswerte sind zwischen 1 und 99
 
-import matplotlib.pyplot as plt
-import numpy as np
-x = np.linspace(-11,41, num=52)
-y = np.linspace(-24,26, num=52)
+x = np.linspace(-11,41, num=102)
+y = np.linspace(-24,26, num=102)
 
 X, Y = np.meshgrid(x,y, sparse=True ,copy=True)
-Z = np.zeros((52,52), dtype=np.float)
+Z = np.zeros((102,102), dtype=np.float)
 
-for i in range(52):
-   for j in range(52):
-       #Z[i,j] = rand()*100
+for i in range(102):
+   for j in range(102):
        Z[i,j] = float(randint(1, high=99, size=None))
 
 #DEBUG
@@ -37,17 +35,17 @@ print("[*] Array initialisiert \n")
 
 i = 0
 B = []
-while i < 52:
+while i < 102:
     B.insert(i, 0)
     i += 1
 
 Z[0] = B
-Z[50] = B
+Z[100] = B
 
 i = 0
-while i < 52:
+while i < 102:
     Z[i][0] = 0
-    Z[i][50] = 0
+    Z[i][100] = 0
     i += 1
 
 #DEBUG
@@ -64,13 +62,13 @@ abc = input("Welche Anordnung soll berechnet werden (A/B/C): ")
 #Generiert geladene Fläche (4x4)
 #Diese Fläche ist bei allen Szenarios gleich
 
-i = 23
-j = 9
-while i < 27:
-    while j < 13:
+i = 46
+j = 18
+while i < 54:
+    while j < 26:
         Z[i][j]=100
         j +=1
-    j = 9
+    j = 18
     i += 1
 #DEBUG
 #plt.pcolor(X, Y, Z)
@@ -80,18 +78,18 @@ while i < 27:
 #Szenario A muss nicht weiter verändert werden
 
 if abc == "B":
-    i = 5
-    while i < 45:
-        Z[i][25] = 0
+    i = 10
+    while i < 90:
+        Z[i][50] = 0
         i += 1
 elif abc == "C":
-    i = 23
-    j = 38
-    while i < 27:
-        while j < 42:
+    i = 46
+    j = 76
+    while i < 54:
+        while j < 84:
             Z[i][j]=-100
             j +=1
-        j = 38
+        j = 76
         i += 1
 elif abc != "A":
     print("\nERROR")
@@ -105,15 +103,14 @@ except SyntaxError:
     pass
 
 #Führe Iterationen aus
-a = time.perf_counter()
-Z, iteration_count, total_error, total_error_mean = it.iterativeLaplace(Z)
-b = time.perf_counter()
+Z, iteration_count, total_error, total_error_mean, calc_time = it.iterativeLaplace(Z)
 
-
-print("\nBenötigte Zeit(in s): " + str((b-a)))
+#Zeige Details zur Berechnung an
+print("\nBenötigte Zeit(in s): " + str(calc_time))
 print("\nBenötigte Iterationen: " + str(iteration_count))
 print("\nGesamter Fehler (letzter Schritt): " + str(total_error))
 print("\nDurchsnittlicher Fehler (letzter Schritt): " + str(total_error_mean))
+
 #Zeige Ergebnis der Berechnung
 plt.pcolormesh(X, Y, Z)
 plt.show()
