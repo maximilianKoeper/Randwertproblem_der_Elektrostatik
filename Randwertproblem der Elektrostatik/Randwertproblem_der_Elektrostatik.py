@@ -3,7 +3,7 @@ import Plot as plt
 from numpy.random import randint
 import numpy as np
 
-print("Randwertproblem der Elektrostatik\nVersion 1.3.1\n")
+print("Randwertproblem der Elektrostatik\nVersion 1.4\n")
 
 # Initialisiere Array für Box
 # Größe 50x50 
@@ -17,8 +17,10 @@ y = np.linspace(-25,25, num=102)
 X, Y = np.meshgrid(x,y, sparse=True ,copy=True)
 Z = np.zeros((102,102), dtype=np.float)
 
-for i in range(101):
-   for j in range(101):
+Z_x, Z_y = Z.shape
+
+for i in range(Z_x):
+   for j in range(Z_y):
        Z[i,j] = float(randint(1, high=99, size=None))
 
 
@@ -31,16 +33,16 @@ print("[*] Array initialisiert \n")
 
 i = 0
 B = []
-for i in range(102):
+for i in range(Z_x):
     B.insert(i, 0)
 
 Z[0] = B
-Z[100] = B
+Z[(Z_y-1)] = B
 
 i = 0
-for i in range(102):
+for i in range(Z_x):
     Z[i][0] = 0
-    Z[i][100] = 0
+    Z[i][(Z_x-1)] = 0
 
 print("[*] Äußerer Leiter initialisiert\n")
 
@@ -80,19 +82,39 @@ elif abc == "C":
         j = 76
         i += 1
 elif abc != "A":
-    print("\nERROR")
-    #exit(1)
+    print("\n[*] Default: A")
 
 
-#Warte auf Enter
+#Fehler Schwellwert abfragen (DEFAULT: 0.1)
+try:
+    error_threshold = float(input("\nFehler Schwellwert eingeben oder Enter (default: 0.1kV über gesamtes Feld): "))
+except:
+    print("\n[*] Default: 0.1")
+    error_threshold = 0.1
+    pass
+
+#Over-relaxation Wert abfragen (DEFAULT: 1.6)
+try:
+    relaxation = float(input("\nOver-relaxation Wert (zwischen 0 und 2) eingeben oder Enter (default: 1.6): "))
+    if relaxation >= 2 and relaxation <= 0:
+        relaxation = 1.6
+        print("\n[*] nicht in Intervall! Default: 1.6")
+except:
+    print("\n[*] Default: 1.6")
+    relaxation = 1.6
+    pass
+
+
+#Warte auf Enter um Berechnung zu starten
 try:
     input("\n[*] Alle Daten geladen\n\nEnter um Berechnung zu starten")
-except SyntaxError:
+except:
     pass
+
 
 #Führe Iterationen aus
 #1.6 ist Faktor für Over-relaxation
-Z, iteration_count, total_error, total_error_mean, calc_time, error_entwicklung = it.iterativeLaplace(Z, 1.6)
+Z, iteration_count, total_error, total_error_mean, calc_time, error_entwicklung = it.iterativeLaplace(Z, relaxation, float(error_threshold))
 
 #Zeige Details zur Berechnung an
 print("\nBenötigte Zeit(in s): " + str(calc_time))

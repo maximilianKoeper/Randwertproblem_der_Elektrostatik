@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 def plot(X, Y, Z, error_entwicklung):
     plt.subplot(2,2,1)
-    plt.suptitle('Randwertproblem der Elektrostatik', fontsize=16)
+    plt.suptitle('Randwertproblem der Elektrostatik\nWert an P(10,0) (in kV): ' + str(round((Z[51][41]),4)) , fontsize=16)
     plt.title('Ergebnis')
     plt.pcolormesh(X, Y, Z, shading='flat')
     plt.colorbar()
