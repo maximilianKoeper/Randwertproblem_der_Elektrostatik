@@ -31,18 +31,16 @@ print("[*] Array initialisiert \n")
 
 i = 0
 B = []
-while i < 102:
+for i in range(102):
     B.insert(i, 0)
-    i += 1
 
 Z[0] = B
 Z[100] = B
 
 i = 0
-while i < 102:
+for i in range(102):
     Z[i][0] = 0
     Z[i][100] = 0
-    i += 1
 
 print("[*] Äußerer Leiter initialisiert\n")
 
