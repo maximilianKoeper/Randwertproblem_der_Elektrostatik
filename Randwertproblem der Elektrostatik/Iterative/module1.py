@@ -10,7 +10,6 @@ import math
 
 def iterativeLaplace(V, w):
     a = time.perf_counter()
-    U = V.copy()
     total_error = float(0)
     print("\n[ ] Iteration wird durchgeführt")
     x = True
@@ -18,12 +17,16 @@ def iterativeLaplace(V, w):
     o = 0
     error_entwicklung = [] 
 
-
+    #Starte Berechnung bis Fehler unter 0.1kV auf dem Gesamten Feld ist
     while x == True:
         o = 0
         iteration_count += 2
         i = 1
         total_error = 0
+        #Altes Array in U kopieren um Over-relaxation berechnen zu können
+        U = V.copy()
+        
+        #Starte 1. Iterationsdurchlauf
         while i<101:
             j=1
             while j<101:
@@ -34,7 +37,11 @@ def iterativeLaplace(V, w):
                 j +=1
             i += 1
         i=100
+        
+        #Altes Array kopieren 
         U = V.copy()
+        
+        #Starte 2. Iterationsdurchlauf
         while i>0:
             j=100
             while j>0:
@@ -44,19 +51,19 @@ def iterativeLaplace(V, w):
                     V[i][j] = float(U[i][j]) + c*w
                 j -=1
             i -= 1
+        
         #Berechnung des Fehlers
-        i = 0
-        while i<100:
-            j=0
-            while j<100:
+        for i in range(100):
+            for j in range(100):
                 total_error += abs(float(V[i][j] - U[i][j]))
                 o += 1
-                j +=1
-            i += 1
+        
+        #Fehler in Liste eintragen um Fehlerentwicklung plotten zu können 
         error_entwicklung.append(math.log10(total_error))
+        
+        #Prüfe ob Fehler unter 0.1 Grenze liegt
         if total_error < 0.1:
             x = False
-        U = V.copy()
 
 
 
