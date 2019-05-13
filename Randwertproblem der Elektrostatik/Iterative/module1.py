@@ -46,9 +46,9 @@ def iterativeLaplace(V, w):
             i -= 1
         #Berechnung des Fehlers
         i = 0
-        while i<50:
+        while i<100:
             j=0
-            while j<50:
+            while j<100:
                 total_error += abs(float(V[i][j] - U[i][j]))
                 o += 1
                 j +=1
