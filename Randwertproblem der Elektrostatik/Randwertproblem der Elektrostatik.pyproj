@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>Randwertproblem der Elektrostatik</Name>
     <RootNamespace>Randwertproblem der Elektrostatik</RootNamespace>
-    <InterpreterId>CondaEnv|CondaEnv|env</InterpreterId>
+    <InterpreterId>CondaEnv|CondaEnv|env_physik</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,7 +37,7 @@
     <Compile Include="Randwertproblem_der_Elektrostatik.py" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="CondaEnv|CondaEnv|env" />
+    <InterpreterReference Include="CondaEnv|CondaEnv|env_physik" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Iterative\" />
