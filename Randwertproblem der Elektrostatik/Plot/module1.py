@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 
-#Erstellt eine graphische Übersicht der Berechneten Daten sowie der Fehler Entwicklung
-#Plot 1: Raw Daten
-#Plot 2: Daten Interpoliert
-#Plot 3: Äquipotentiallinien
-#Plot 4: Gesamte Fehlerentwicklung
+# Erstellt eine graphische Übersicht der Berechneten Daten sowie der Fehler Entwicklung
+# Plot 1: Raw Daten
+# Plot 2: Daten Interpoliert
+# Plot 3: Äquipotentiallinien
+# Plot 4: Gesamte Fehlerentwicklung
 
 def plot(X, Y, Z, error_entwicklung):
     plt.subplot(2,2,1)

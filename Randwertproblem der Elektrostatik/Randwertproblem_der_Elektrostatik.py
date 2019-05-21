@@ -1,5 +1,14 @@
+# 1. Computerübung zur Experimentalphysik 2 (SoSe 2019)
+# Randwertproblem der Elektrostatik
+# Maximilian Köper / Erik Steinkamp
+
+# Module importieren
+
 import Iterative as it
 import Plot as plt
+
+# Bibliotheken importieren
+
 from numpy.random import randint
 import numpy as np
 
@@ -26,10 +35,10 @@ for i in range(Z_x):
 
 print("[*] Array initialisiert \n")
 
-#Initialisiere Äußeren Leiter
-#jeweils 1 Block oben und seitlich
-#Potential außen = 0*100000V
-#Innere Anordung wird nach User Eingabe initialisiert
+# Initialisiere Äußeren Leiter
+# jeweils 1 Block oben und seitlich
+# Potential außen = 0*100000V
+# Innere Anordung wird nach User Eingabe initialisiert
 
 i = 0
 B = []
@@ -46,14 +55,14 @@ for i in range(Z_x):
 
 print("[*] Äußerer Leiter initialisiert\n")
 
-#User Abfrage 
-#Welche Szenario soll berechnet werden
-#A/B/C vgl. Aufgabenblatt
+# User Abfrage 
+# Welche Szenario soll berechnet werden
+# A/B/C vgl. Aufgabenblatt
 
 abc = input("Welche Anordnung soll berechnet werden (A/B/C): ")
 
-#Generiert geladene Fläche (4x4)
-#Diese Fläche ist bei allen Szenarios gleich
+# Generiert geladene Fläche (4x4)
+# Diese Fläche ist bei allen Szenarios gleich
 
 i = 46
 j = 18
@@ -64,8 +73,8 @@ while i < 54:
     j = 18
     i += 1
 
-#Szenario wird generiert
-#Szenario A muss nicht weiter verändert werden
+# Szenario wird generiert
+# Szenario A muss nicht weiter verändert werden
 
 if abc == "B":
     i = 10
@@ -85,7 +94,7 @@ elif abc != "A":
     print("\n[*] Default: A")
 
 
-#Fehler Schwellwert abfragen (DEFAULT: 0.1)
+# Fehler Schwellwert abfragen (DEFAULT: 0.1)
 try:
     error_threshold = float(input("\nFehler Schwellwert eingeben oder Enter (default: 0.1kV über gesamtes Feld): "))
 except:
@@ -93,7 +102,7 @@ except:
     error_threshold = 0.1
     pass
 
-#Over-relaxation Wert abfragen (DEFAULT: 1.6)
+# Over-relaxation Wert abfragen (DEFAULT: 1.6)
 try:
     relaxation = float(input("\nOver-relaxation Wert (zwischen 0 und 2) eingeben oder Enter (default: 1.6): "))
     if relaxation >= 2 and relaxation <= 0:
@@ -105,23 +114,22 @@ except:
     pass
 
 
-#Warte auf Enter um Berechnung zu starten
+# Warte auf Enter um Berechnung zu starten
 try:
     input("\n[*] Alle Daten geladen\n\nEnter um Berechnung zu starten")
 except:
     pass
 
 
-#Führe Iterationen aus
-#1.6 ist Faktor für Over-relaxation
-Z, iteration_count, total_error, total_error_mean, calc_time, error_entwicklung = it.iterativeLaplace(Z, relaxation, float(error_threshold))
+# Führe Iterationen aus
+Z, iteration_count, total_error, total_error_mean, calc_time, error_entwicklung = it.iterativeLaplace(Z, relaxation, error_threshold)
 
-#Zeige Details zur Berechnung an
+# Zeige Details zur Berechnung an
 print("\nBenötigte Zeit(in s): " + str(calc_time))
 print("\nBenötigte Iterationen: " + str(iteration_count))
 print("\nGesamter Fehler (letzter Schritt): " + str(total_error))
 print("\nDurchschnittlicher Fehler (letzter Schritt): " + str(total_error_mean))
 print("\nPotentialwert an der Stelle x=10 y=0: " + str(Z[51][41]))
 
-#Zeige Ergebnis der Berechnung
+# Zeige Ergebnis der Berechnung
 plt.plot(X, Y, Z, error_entwicklung)

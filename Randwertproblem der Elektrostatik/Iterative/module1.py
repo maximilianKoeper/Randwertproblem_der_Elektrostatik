@@ -1,8 +1,8 @@
-#Iterative Berechnung der Laplacegleichung
+# Iterative Berechnung der Laplacegleichung
 
-#Berechnung wird von beiden Seiten vorgenommen um die Konvergenzgeschwindigkeit zu erhöhen
-#Over-relaxation wird genutzt um die Konvergenzgeschwindigkeit weiter zu beschleunigen
-#Blöcke mit den Werten 0,100,-100 kV werden nicht überschrieben (alle anderen Blöcke können diesen Wert nicht annehmen)
+# Berechnung wird von beiden Seiten vorgenommen um die Konvergenzgeschwindigkeit zu erhöhen
+# Over-relaxation wird genutzt um die Konvergenzgeschwindigkeit weiter zu beschleunigen
+# Blöcke mit den Werten 0,100,-100 kV werden nicht überschrieben (alle anderen Blöcke können diesen Wert nicht annehmen)
 
 import copy
 import time
@@ -61,7 +61,7 @@ def iterativeLaplace(V, over_relaxation_value, error_threshold):
         #Fehler in Liste eintragen um Fehlerentwicklung plotten zu können 
         error_entwicklung.append(math.log10(total_error))
         
-        #Prüfe ob Fehler unter 0.1 Grenze liegt
+        #Prüfe ob Fehler unter threshold Grenze liegt
         if total_error < error_threshold:
             x = False
 
